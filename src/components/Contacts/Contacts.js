@@ -3,6 +3,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
 import ContactsTable from '../ContactsTable/ContactsTable';
+import ContactsForm from '../ContactsForm/ContactsForm';
 
 import withHocs from './ContactsHoc';
 
@@ -12,8 +13,7 @@ class Contacts extends Component {
     title: '',
     type: '',
     context_1: '',
-    context_2: '',
-    watched: false
+    context_2: ''
   }
 
   handleClickOpen = (data = {}) => {
@@ -29,7 +29,6 @@ class Contacts extends Component {
       type: '',
       context_1: '',
       context_2: '',
-      watched: false,
       open: false
     });
   };
@@ -39,14 +38,16 @@ class Contacts extends Component {
   handleChange = title => ({ target }) => { this.setState({ [title]: target.value }); };
 
    render() {
+    const { id, title, type, context_1, context_2, open } = this.state;
     const { classes } = this.props;
     return (
       <>
+      <ContactsForm handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} handleCheckboxChange={this.handleCheckboxChange} selectedValue={{ id, title, type, context_1, context_2 }} open={open} onClose={this.handleClose} />
       <div className={classes.wrapper}>
         <ContactsTable onOpen={this.handleClickOpen} onClose={this.handleClose} />
-        <Fab onClick={() => this.handleClickOpen()} color="primary" aria-label="Add" className={classes.fab}>
+        {/*<Fab onClick={() => this.handleClickOpen()} color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
-        </Fab>
+        </Fab>*/}
       </div>
       </>
     );

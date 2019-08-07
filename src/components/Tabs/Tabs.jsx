@@ -6,8 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import SwipeableViews from 'react-swipeable-views';
 import MovieCreationIcon from '@material-ui/icons/MovieCreation';
 import CameraIcon from '@material-ui/icons/Call';
-
+import AirplayIcon from '@material-ui/icons/Airplay'
 import Contacts from '../Contacts/Contacts';
+import Printspreviewblocks from '../Printspreviewblocks/Printspreviewblocks';
 
 import withHocs from './TabsHoc';
 
@@ -32,14 +33,16 @@ class SimpleTabs extends React.Component {
     return (
       <div className={classes.root}>
         <AppBar position="static">
-          <Tabs variant='scrollable' value={value} onChange={this.handleChange}>
+          <Tabs variant='fullWidth' value={value} onChange={this.handleChange}>
             {/*Тут писать табы*/}
             <Tab label="Контакты" icon={<CameraIcon />} />
+            <Tab label="Блок Превью Продукции" icon={<AirplayIcon />} />
           </Tabs>
         </AppBar>
         <SwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={value} onChangeIndex={this.handleChangeIndex} >
             {/*Тут подключать компоненты к табам*/}
           <TabContainer dir={theme.direction}><Contacts /></TabContainer>
+          <TabContainer dir={theme.direction}><Printspreviewblocks /></TabContainer>
         </SwipeableViews>
       </div>
     );

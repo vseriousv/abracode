@@ -5,7 +5,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Checkbox from '@material-ui/core/Checkbox';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -13,11 +12,14 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import ContactsDialog from '../ContactsDialog/ContactsDialog';
+import withHocs from './PrintspreviewblocksTableHoc';
 
-import withHocs from './ContactsTableHoc';
+const directors = [
+  { id: 1, name: 'Quentin Tarantino', age: 55, movies: [ { name: 'Movie 1' }, { name: 'Movie 2' } ] },
+  { id: 2, name: 'Guy Ritchie', age: 50, movies: [ { name: 'Movie 1' }, { name: 'Movie 2' } ] }
+];
 
-class ContactsTable extends React.Component {
+class PrintspreviewblocksTable extends React.Component {
   state = {
     anchorEl: null,
     openDialog: false,
@@ -35,7 +37,7 @@ class ContactsTable extends React.Component {
 
   handleClose = () => { this.setState({ anchorEl: null }); };
 
-  handleEdit = () => {
+  handleEdit = (row) => {
     this.props.onOpen(this.state.data);
     this.handleClose();
   };
@@ -47,41 +49,37 @@ class ContactsTable extends React.Component {
 
   render() {
     const { anchorEl, openDialog, data: activeElem = {} } = this.state;
-
-    const { classes, data } = this.props;
-
-    const { contacts = [] } = data;
+    const { classes } = this.props;
 
     return (
       <>
-        <ContactsDialog open={openDialog} handleClose={this.handleDialogClose} id={activeElem.id} />
         <Paper className={classes.root}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>НАЗВАНИЕ</TableCell>
-                <TableCell>ТИП</TableCell>
-                <TableCell>НОМЕР ТЕЛЕФОНА</TableCell>
-                <TableCell>ОПИСАНИЕ</TableCell>
-                <TableCell align="right"></TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell align="right">Age</TableCell>
+                <TableCell>Movies</TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {contacts.map(contact => {
+              {directors.map(director => {
                 return (
-                  <TableRow key={contact.id}>
-                    <TableCell component="th" scope="row">{contact.title}</TableCell>
-                    <TableCell>{contact.type}</TableCell>
-                    <TableCell>{contact.context_1}</TableCell>
-                    <TableCell>{contact.context_2}</TableCell>
+                  <TableRow key={director.id}>
+                    <TableCell component="th" scope="row">{director.name}</TableCell>
+                    <TableCell align="right">{director.age}</TableCell>
+                    <TableCell>
+                      {director.movies.map((movie, key) => <div key={movie.name}>{`${key+1}. `}{movie.name}</div>)}
+                    </TableCell>
                     <TableCell align="right">
                       <>
-                        <IconButton color="inherit" onClick={(e) => this.handleClick(e, contact)}>
+                        <IconButton color="inherit" onClick={(e) => this.handleClick(e, director)}>
                           <MoreIcon />
                         </IconButton>
                         <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
-                          <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
-                          <MenuItem onClick={this.handleDelete}><DeleteIcon/> Delete</MenuItem>
+                          <MenuItem onClick={() => this.handleEdit(director)}><CreateIcon /> Edit</MenuItem>
+                          <MenuItem onClick={this.handleDelete}><DeleteIcon /> Delete</MenuItem>
                         </Menu>
                       </>
                     </TableCell>
@@ -95,4 +93,4 @@ class ContactsTable extends React.Component {
     );
   }
 };
-export default withHocs(ContactsTable);
+export default withHocs(PrintspreviewblocksTable);
