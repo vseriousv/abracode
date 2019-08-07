@@ -10,8 +10,17 @@ import withHocs from './PrintspreviewblocksHoc';
 class Printspreviewblocks extends React.Component {
   state = {
     open: false,
-    name: '',
-    age: 0,
+    img: '',
+    opsectionid: '',
+    titlepage: '',
+    subtext_1: '',
+    subtext_2: '',
+    subtext_3: '',
+    button_1: '',
+    url_btn_1: '',
+    button_2: '',
+    url_btn_2: '',
+    url: '',
   }
 
   handleClickOpen = (data) => {
@@ -21,12 +30,25 @@ class Printspreviewblocks extends React.Component {
     });
   };
 
-  handleClose = () => { this.setState({ name: '', age: 0, id: null, open: false }); };
-
-  handleChange = name => ({ target }) => { this.setState({ [name]: target.value }); };
+  handleClose = () => {
+    this.setState({    
+      open: false,
+      img: '',
+      opsectionid: '',
+      titlepage: '',
+      subtext_1: '',
+      subtext_2: '',
+      subtext_3: '',
+      button_1: '',
+      url_btn_1: '',
+      button_2: '',
+      url_btn_2: '',
+      url: '', });
+    };
+  handleChange = img => ({ target }) => { this.setState({ [img]: target.value }); };
 
   render() {
-    const { name, age, id, open } = this.state;
+    const { open, img, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url } = this.state;
     const { classes } = this.props;
 
     return (
@@ -37,7 +59,7 @@ class Printspreviewblocks extends React.Component {
             <AddIcon />
           </Fab>
         </div>
-      </> 
+      </>
     );
   }
 };

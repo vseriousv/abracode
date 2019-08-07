@@ -35,14 +35,14 @@ class SimpleTabs extends React.Component {
         <AppBar position="static">
           <Tabs variant='fullWidth' value={value} onChange={this.handleChange}>
             {/*Тут писать табы*/}
-            <Tab label="Контакты" icon={<CameraIcon />} />
             <Tab label="Блок Превью Продукции" icon={<AirplayIcon />} />
+            <Tab label="Контакты" icon={<CameraIcon />} />
           </Tabs>
         </AppBar>
         <SwipeableViews axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'} index={value} onChangeIndex={this.handleChangeIndex} >
             {/*Тут подключать компоненты к табам*/}
+            <TabContainer dir={theme.direction}><Printspreviewblocks /></TabContainer>
           <TabContainer dir={theme.direction}><Contacts /></TabContainer>
-          <TabContainer dir={theme.direction}><Printspreviewblocks /></TabContainer>
         </SwipeableViews>
       </div>
     );

@@ -12,12 +12,9 @@ import Menu from '@material-ui/core/Menu';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 
-import withHocs from './PrintspreviewblocksTableHoc';
+import PrintspreviewblocksDialog from '../PrintspreviewblocksDialog/PrintspreviewblocksDialog';
 
-const directors = [
-  { id: 1, name: 'Quentin Tarantino', age: 55, movies: [ { name: 'Movie 1' }, { name: 'Movie 2' } ] },
-  { id: 2, name: 'Guy Ritchie', age: 50, movies: [ { name: 'Movie 1' }, { name: 'Movie 2' } ] }
-];
+import withHocs from './PrintspreviewblocksTableHoc';
 
 class PrintspreviewblocksTable extends React.Component {
   state = {
@@ -49,36 +46,53 @@ class PrintspreviewblocksTable extends React.Component {
 
   render() {
     const { anchorEl, openDialog, data: activeElem = {} } = this.state;
-    const { classes } = this.props;
+    const { classes, data } = this.props;
+
+    const { printspreviewblocks = [] } = data;
 
     return (
       <>
+        <PrintspreviewblocksDialog open={openDialog} handleClose={this.handleDialogClose} id={activeElem.id} />
         <Paper className={classes.root}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Age</TableCell>
-                <TableCell>Movies</TableCell>
+                {/*<TableCell>Изображение</TableCell>*/}
+                <TableCell>Раздел</TableCell>
+                <TableCell>Заголовок</TableCell>
+                {/*<TableCell>Контекст_1</TableCell>
+                <TableCell>Контекст_2</TableCell>
+                <TableCell>Контекст_3</TableCell>
+                <TableCell>Кнопка_1</TableCell>
+                <TableCell>Ссылка на кнопку</TableCell>
+                <TableCell>Кнопка_2</TableCell>
+                <TableCell>Ссылка на кнопку</TableCell>*/}
+                <TableCell>URL</TableCell>
                 <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {directors.map(director => {
+              {printspreviewblocks.map(previewItem => {
                 return (
-                  <TableRow key={director.id}>
-                    <TableCell component="th" scope="row">{director.name}</TableCell>
-                    <TableCell align="right">{director.age}</TableCell>
-                    <TableCell>
-                      {director.movies.map((movie, key) => <div key={movie.name}>{`${key+1}. `}{movie.name}</div>)}
-                    </TableCell>
+                  <TableRow key={previewItem.id}>
+                    {/*<TableCell>{previewItem.img}</TableCell>*/}
+                    <TableCell>{previewItem.opsection.name}</TableCell>
+                    <TableCell>{previewItem.titlepage}</TableCell>
+                    {/*<TableCell>{previewItem.subtext_1}</TableCell>
+                    <TableCell>{previewItem.subtext_2}</TableCell>
+                    <TableCell>{previewItem.subtext_3}</TableCell>
+                    <TableCell>{previewItem.button_1}</TableCell>
+                    <TableCell>{previewItem.url_btn_1}</TableCell>
+                    <TableCell>{previewItem.button_2}</TableCell>
+                    <TableCell>{previewItem.url_btn_2}</TableCell>*/}
+                    <TableCell>{previewItem.url}</TableCell>
                     <TableCell align="right">
                       <>
-                        <IconButton color="inherit" onClick={(e) => this.handleClick(e, director)}>
+                        <IconButton color="inherit" onClick={(e) => this.handleClick(e, previewItem)}>
                           <MoreIcon />
                         </IconButton>
                         <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
-                          <MenuItem onClick={() => this.handleEdit(director)}><CreateIcon /> Edit</MenuItem>
+                          <MenuItem onClick={() => this.handleEdit(previewItem)}><CreateIcon /> Edit</MenuItem>
                           <MenuItem onClick={this.handleDelete}><DeleteIcon /> Delete</MenuItem>
                         </Menu>
                       </>

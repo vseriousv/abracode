@@ -80,8 +80,7 @@ class ContactsTable extends React.Component {
                           <MoreIcon />
                         </IconButton>
                         <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
-                          <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
-                          <MenuItem onClick={this.handleDelete}><DeleteIcon/> Delete</MenuItem>
+                          <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>                          
                         </Menu>
                       </>
                     </TableCell>
