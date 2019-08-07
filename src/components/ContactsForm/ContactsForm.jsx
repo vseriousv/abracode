@@ -14,19 +14,15 @@ import SaveIcon from '@material-ui/icons/Save';
 
 import withHocs from './ContactsFormHoc';
 
-const contacts = [
-  { id: 1, title: 'phone_1', type: 'phone_mobil', context_1: "+7 (383) 207 93 93", context_2: "(Новосибирск)"  },
-  { id: 2, title: 'phone_2', type: 'phone_mobil', context_1: "8 800 555 61 53", context_2: "(Звонок бесплатный)"  }
-];
-
 class ContactsForm extends React.Component {
   handleClose = () => {
     this.props.onClose();
   };
 
   handleSave = () => {
-    const { selectedValue, onClose } = this.props;
+    const { selectedValue, onClose, updateContact } = this.props;
     const { id, title, type, context_1, context_2  } = selectedValue;
+    updateContact({id, title, type, context_1, context_2});
     onClose();
   };
 
