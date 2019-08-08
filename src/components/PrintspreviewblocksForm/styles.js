@@ -22,5 +22,11 @@ export const styles = theme => ({
   },
   button: {
     minWidth: 100,
-  }
+  },
+  formControl: {
+    width: '100%',
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 });

@@ -4,7 +4,11 @@ export const printspreviewblocksQuery = gql`
 query printspreviewblocks{
   printspreviewblocks{
     id
-    img
+    img{
+      name
+      type
+      path
+    }
     opsection{
       name
     }

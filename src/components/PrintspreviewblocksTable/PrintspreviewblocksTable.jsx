@@ -46,6 +46,7 @@ class PrintspreviewblocksTable extends React.Component {
 
   render() {
     const { anchorEl, openDialog, data: activeElem = {} } = this.state;
+
     const { classes, data } = this.props;
 
     const { printspreviewblocks = [] } = data;
@@ -92,7 +93,7 @@ class PrintspreviewblocksTable extends React.Component {
                           <MoreIcon />
                         </IconButton>
                         <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose} >
-                          <MenuItem onClick={() => this.handleEdit(previewItem)}><CreateIcon /> Edit</MenuItem>
+                          <MenuItem onClick={this.handleEdit}><CreateIcon /> Edit</MenuItem>
                           <MenuItem onClick={this.handleDelete}><DeleteIcon /> Delete</MenuItem>
                         </Menu>
                       </>

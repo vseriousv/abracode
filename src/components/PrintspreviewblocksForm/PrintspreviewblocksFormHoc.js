@@ -4,17 +4,33 @@ import { graphql } from 'react-apollo';
 
 import { styles } from './styles';
 
-import { updatedContactMutation } from './mutations';
-import { contactsQuery } from '../ContactsTable/queries';
+import { addPrintspreviewblockMutation, updatePrintspreviewblockMutation } from './mutations';
+import { opsectionsQuery, imageFilesQuery } from './queries';
 
+import { printspreviewblocksQuery } from '../PrintspreviewblocksTable/queries';
 
-const withGraphqlUpdate = graphql(updatedContactMutation, {
-    props: ({ mutate }) => ({
-      updateContact: contact => mutate({
-        variables: contact,
-        refetchQueries: [{ query: contactsQuery }],
+const withGraphqlMutation = compose(
+  graphql(addPrintspreviewblockMutation, {
+      props: ({ mutate }) => ({
+        addPrintspreviewblock: previewblock => mutate({
+          variables: previewblock,
+          refetchQueries: [{ query: printspreviewblocksQuery }],
+        }),
       }),
     }),
-  })
+  graphql(updatePrintspreviewblockMutation, {
+      props: ({ mutate }) => ({
+        updatePrintspreviewblock: previewblock => mutate({
+          variables: previewblock,
+          refetchQueries: [{ query: printspreviewblocksQuery }],
+        }),
+      }),
+    })
+);
 
-export default compose(withStyles(styles), withGraphqlUpdate);
+const withGraphqlQueries = compose(
+  graphql(opsectionsQuery, { name: "opsectionsQuery"}),
+  graphql(imageFilesQuery, { name: "imageFilesQuery"})
+);
+
+export default compose(withStyles(styles), withGraphqlMutation, withGraphqlQueries);

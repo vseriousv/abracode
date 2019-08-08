@@ -1,12 +1,77 @@
 import { gql } from 'apollo-boost';
 
-export const updatedContactMutation = gql`
-mutation contactUpdate($id: ID, $title: String!, $type: String!, $context_1: String!, $context_2: String!){
-  updateContactsPhone(id: $id, title: $title, type: $type, context_1: $context_1, context_2: $context_2){
-    title
-    type
-    context_1
-    context_2
+export const addPrintspreviewblockMutation = gql`
+mutation addPrintspreviewblock(
+  $img: String,
+  $opsectionid: String,
+  $titlepage: String,
+  $subtext_1: String,
+  $subtext_2: String,
+  $subtext_3: String,
+  $button_1: String,
+  $url_btn_1: String,
+  $button_2: String,
+  $url_btn_2: String,
+  $url: String
+){
+  addPrintspreviewblock(
+    img: $img,
+    opsectionid: $opsectionid,
+    titlepage: $titlepage,
+    subtext_1: $subtext_1,
+    subtext_2: $subtext_2,
+    subtext_3: $subtext_3,
+    button_1: $button_1,
+    url_btn_1: $url_btn_1,
+    button_2: $button_2,
+    url_btn_2: $url_btn_2,
+    url:$url
+  ){
+    titlepage
+  }
+}
+`;
+
+export const updatePrintspreviewblockMutation = gql`
+mutation updatePrintspreviewblock(
+  $id: ID,
+  $img: String,
+  $opsectionid: String,
+  $titlepage: String,
+  $subtext_1: String,
+  $subtext_2: String,
+  $subtext_3: String,
+  $button_1: String,
+  $url_btn_1: String,
+  $button_2: String,
+  $url_btn_2: String,
+  $url: String
+){
+  updatePrintspreviewblock(
+    id: $id,
+    img: $img,
+    opsectionid: $opsectionid,
+    titlepage: $titlepage,
+    subtext_1: $subtext_1,
+    subtext_2: $subtext_2,
+    subtext_3: $subtext_3,
+    button_1: $button_1,
+    url_btn_1: $url_btn_1,
+    button_2: $button_2,
+    url_btn_2: $url_btn_2,
+    url:$url
+  ){
+    id
+    img{
+      name
+    }
+    opsection{
+      name
+    }
+    titlepage
+    subtext_1
+    subtext_2
+    subtext_3
   }
 }
 `;
