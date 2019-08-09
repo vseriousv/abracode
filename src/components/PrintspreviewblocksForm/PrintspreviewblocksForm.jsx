@@ -21,16 +21,16 @@ class PrintspreviewblocksForm extends React.Component {
 
   handleSave = () => {
     const { selectedValue, onClose, addPrintspreviewblock, updatePrintspreviewblock } = this.props;
-    const { id, img, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url } = selectedValue;
+    const { id, imgid, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url } = selectedValue;
     id ?
-    updatePrintspreviewblock({ id, img, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url }) :
-    addPrintspreviewblock({ img, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url });
+    updatePrintspreviewblock({ id, imgid, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url }) :
+    addPrintspreviewblock({ imgid, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url });
     onClose();
   };
 
   render() {
     const { opsectionsQuery = {}, imageFilesQuery = {}, classes, open, handleChange, handleSelectChange, handleCheckboxChange, selectedValue = {} } = this.props;
-    const { img, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url } = selectedValue;
+    const { imgid, opsectionid, titlepage, subtext_1, subtext_2, subtext_3, button_1, url_btn_1, button_2, url_btn_2, url } = selectedValue;
     const { opsection = [] } = opsectionsQuery;
     const { imagefiles = [] } = imageFilesQuery;
     return (
@@ -38,27 +38,26 @@ class PrintspreviewblocksForm extends React.Component {
         <DialogTitle className={classes.title} id="simple-dialog-title">Блок PREVIEW на страницу продуктов</DialogTitle>
         <form className={classes.container} noValidate autoComplete="off">
 
-          <FormControl variant="outlined" className={classes.formControlSelect}>
+        <FormControl variant="outlined" className={classes.formControlSelect}>
             <InputLabel
               ref={ref => { this.InputLabelRef = ref; }}
               htmlFor="outlined-img-simple">Изображение</InputLabel>
-
             <Select
-              value={img}
-              onChange={handleSelectChange('img')}
-              input={<OutlinedInput name="img" id="outlined-img" labelWidth={105} />}
+              value={imgid}
+              onChange={handleSelectChange('imgid')}
+              input={<OutlinedInput name="imgid" id="outlined-imgid" labelWidth={105} />}
             >
-            {imagefiles.map(image => <MenuItem key={image.id} value={image.id}>{image.name}</MenuItem>)}
+            {imagefiles.map(image =>
+              <MenuItem key={image.id} value={image.id}>
+                <img className={classes.imgFuidselect} src={"http://gavrilov.site/static/images/PrintsPreviewBlocks/"+image.name} />{image.name}
+              </MenuItem>)}
             </Select>
           </FormControl>
 
           <FormControl variant="outlined" className={classes.formControlSelect}>
             <InputLabel
               ref={ref => { this.InputLabelRef = ref; }}
-              htmlFor="outlined-opsectionid-simple"
-            >
-              Раздел
-            </InputLabel>
+              htmlFor="outlined-opsectionid-simple">Раздел</InputLabel>
             <Select
               value={opsectionid}
               onChange={handleSelectChange('opsectionid')}

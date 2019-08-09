@@ -29,4 +29,7 @@ export const styles = theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  imgFuidselect:{
+    height: "50px;"
+  }
 });
