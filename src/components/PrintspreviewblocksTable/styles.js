@@ -7,5 +7,10 @@ export const styles = theme => ({
   root: {
     width: '100%',
     overflowX: 'auto',
+    overflowY: 'hiden',
+    height: '80vh'
   },
+  imgTable: {
+    width: '100px'
+  }
 });

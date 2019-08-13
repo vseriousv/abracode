@@ -2,7 +2,7 @@ import { gql } from 'apollo-boost';
 
 export const addPrintspreviewblockMutation = gql`
 mutation addPrintspreviewblock(
-  $img: String,
+  $imgid: String,
   $opsectionid: String,
   $titlepage: String,
   $subtext_1: String,
@@ -15,7 +15,7 @@ mutation addPrintspreviewblock(
   $url: String
 ){
   addPrintspreviewblock(
-    img: $img,
+    imgid: $imgid,
     opsectionid: $opsectionid,
     titlepage: $titlepage,
     subtext_1: $subtext_1,
@@ -35,7 +35,7 @@ mutation addPrintspreviewblock(
 export const updatePrintspreviewblockMutation = gql`
 mutation updatePrintspreviewblock(
   $id: ID,
-  $img: String,
+  $imgid: String,
   $opsectionid: String,
   $titlepage: String,
   $subtext_1: String,
@@ -49,7 +49,7 @@ mutation updatePrintspreviewblock(
 ){
   updatePrintspreviewblock(
     id: $id,
-    img: $img,
+    imgid: $imgid,
     opsectionid: $opsectionid,
     titlepage: $titlepage,
     subtext_1: $subtext_1,

@@ -38,22 +38,6 @@ class PrintspreviewblocksForm extends React.Component {
         <DialogTitle className={classes.title} id="simple-dialog-title">Блок PREVIEW на страницу продуктов</DialogTitle>
         <form className={classes.container} noValidate autoComplete="off">
 
-        <FormControl variant="outlined" className={classes.formControlSelect}>
-            <InputLabel
-              ref={ref => { this.InputLabelRef = ref; }}
-              htmlFor="outlined-img-simple">Изображение</InputLabel>
-            <Select
-              value={imgid}
-              onChange={handleSelectChange('imgid')}
-              input={<OutlinedInput name="imgid" id="outlined-imgid" labelWidth={105} />}
-            >
-            {imagefiles.map(image =>
-              <MenuItem key={image.id} value={image.id}>
-                <img className={classes.imgFuidselect} src={"http://gavrilov.site/static/images/PrintsPreviewBlocks/"+image.name} />{image.name}
-              </MenuItem>)}
-            </Select>
-          </FormControl>
-
           <FormControl variant="outlined" className={classes.formControlSelect}>
             <InputLabel
               ref={ref => { this.InputLabelRef = ref; }}
@@ -65,6 +49,22 @@ class PrintspreviewblocksForm extends React.Component {
             >
             {opsection.map(section => <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>)}
             </Select>
+          </FormControl>
+
+          <FormControl variant="outlined" className={classes.formControlSelect}>
+              <InputLabel
+                ref={ref => { this.InputLabelRef = ref; }}
+                htmlFor="outlined-img-simple">Изображение</InputLabel>
+              <Select
+                value={imgid}
+                onChange={handleSelectChange('imgid')}
+                input={<OutlinedInput name="imgid" id="outlined-imgid" labelWidth={105} />}
+              >
+              {imagefiles.map(image =>
+                <MenuItem key={image.id} value={image.id}>
+                  <img className={classes.imgFuidselect} src={"http://gavrilov.site/static/images/PrintsPreviewBlocks/"+image.name} />{image.name}
+                </MenuItem>)}
+              </Select>
           </FormControl>
 
           <TextField
