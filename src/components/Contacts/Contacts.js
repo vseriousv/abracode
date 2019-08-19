@@ -1,6 +1,4 @@
 import React,{Component} from 'react';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 
 import ContactsTable from '../ContactsTable/ContactsTable';
 import ContactsForm from '../ContactsForm/ContactsForm';
@@ -45,9 +43,6 @@ class Contacts extends Component {
       <ContactsForm handleChange={this.handleChange} handleSelectChange={this.handleSelectChange} handleCheckboxChange={this.handleCheckboxChange} selectedValue={{ id, title, type, context_1, context_2 }} open={open} onClose={this.handleClose} />
       <div className={classes.wrapper}>
         <ContactsTable onOpen={this.handleClickOpen} onClose={this.handleClose} />
-        {/*<Fab onClick={() => this.handleClickOpen()} color="primary" aria-label="Add" className={classes.fab}>
-          <AddIcon />
-        </Fab>*/}
       </div>
       </>
     );

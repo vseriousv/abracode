@@ -87,6 +87,9 @@ class ContactsTable extends React.Component {
                   </TableRow>
                 );
               })}
+              <TableRow>
+                <TableCell align="right"></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </Paper>

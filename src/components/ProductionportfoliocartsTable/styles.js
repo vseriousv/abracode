@@ -8,7 +8,7 @@ export const styles = theme => ({
     width: '100%',
     overflowX: 'auto',
     overflowY: 'hiden',
-    height: '80vh'
+    height: 'calc( 100vh - 150px )'
   },
   imgTable: {
     width: '100px'

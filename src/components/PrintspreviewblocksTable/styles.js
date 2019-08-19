@@ -8,9 +8,22 @@ export const styles = theme => ({
     width: '100%',
     overflowX: 'auto',
     overflowY: 'hiden',
-    height: '80vh'
+    height: 'calc( 100vh - 150px )'
+  },
+  root_filtr: {
+    width: '100%',
+    overflowX: 'auto',
+    marginBottom: '10px'
   },
   imgTable: {
     width: '100px'
-  }
+  },
+  formControl: {
+    minWidth: 120,
+    width: '100%',
+  },
+  formControlSelect: {
+    marginTop: theme.spacing.unit * 2,
+    width: '100%',
+  },
 });

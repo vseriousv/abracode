@@ -1,22 +1,36 @@
-import React from 'react';
-import Tabs from './components/Tabs/Tabs';
+import React, {Component} from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import theme from './components/theme';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
+import Drawers from './components/Drawers/Drawers';
+import Login from './components/Login/Login';
+import theme from './components/theme';
+
 const client = new ApolloClient({
-  uri: 'http://gavrilov.site/graphql',
+  //uri: 'http://gavrilov.site/graphql',
+    uri: 'http://localhost:9000/graphql',
 });
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <MuiThemeProvider theme={theme}>
-        <Tabs />
-      </MuiThemeProvider>
-    </ApolloProvider>
-  );
+class App extends Component {
+    render() {
+        if (!localStorage.getItem('token_access')){
+            return (
+                <ApolloProvider client={client}>
+                    <MuiThemeProvider theme={theme}>
+                        <Login/>
+                    </MuiThemeProvider>
+                </ApolloProvider>
+            );
+        }else{
+            return (
+                <ApolloProvider client={client}>
+                    <MuiThemeProvider theme={theme}>
+                        <Drawers />
+                    </MuiThemeProvider>
+                </ApolloProvider>
+            );
+        }
+    }
 }
-
 export default App;

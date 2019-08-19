@@ -15,6 +15,10 @@ import CreateIcon from '@material-ui/icons/Create';
 import PrintspreviewblocksDialog from '../PrintspreviewblocksDialog/PrintspreviewblocksDialog';
 
 import withHocs from './PrintspreviewblocksTableHoc';
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 class PrintspreviewblocksTable extends React.Component {
   state = {
@@ -58,16 +62,8 @@ class PrintspreviewblocksTable extends React.Component {
           <Table>
             <TableHead>
               <TableRow>
-                {/*<TableCell>Изображение</TableCell>*/}
                 <TableCell>Раздел</TableCell>
                 <TableCell>Заголовок</TableCell>
-                {/*<TableCell>Контекст_1</TableCell>
-                <TableCell>Контекст_2</TableCell>
-                <TableCell>Контекст_3</TableCell>
-                <TableCell>Кнопка_1</TableCell>
-                <TableCell>Ссылка на кнопку</TableCell>
-                <TableCell>Кнопка_2</TableCell>
-                <TableCell>Ссылка на кнопку</TableCell>*/}
                 <TableCell>URL</TableCell>
                 <TableCell></TableCell>
               </TableRow>
@@ -79,13 +75,6 @@ class PrintspreviewblocksTable extends React.Component {
                     {/*<TableCell>{previewItem.img}</TableCell>*/}
                     <TableCell>{previewItem.opsection.name}</TableCell>
                     <TableCell>{previewItem.titlepage}</TableCell>
-                    {/*<TableCell>{previewItem.subtext_1}</TableCell>
-                    <TableCell>{previewItem.subtext_2}</TableCell>
-                    <TableCell>{previewItem.subtext_3}</TableCell>
-                    <TableCell>{previewItem.button_1}</TableCell>
-                    <TableCell>{previewItem.url_btn_1}</TableCell>
-                    <TableCell>{previewItem.button_2}</TableCell>
-                    <TableCell>{previewItem.url_btn_2}</TableCell>*/}
                     <TableCell>{previewItem.url}</TableCell>
                     <TableCell align="right">
                       <>
@@ -101,6 +90,9 @@ class PrintspreviewblocksTable extends React.Component {
                   </TableRow>
                 );
               })}
+              <TableRow>
+                <TableCell></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </Paper>

@@ -10,6 +10,7 @@ export const styles = theme => ({
   },
   formControl: {
     minWidth: 120,
+    width: '100%',
   },
   formControlSelect: {
     marginTop: theme.spacing.unit * 2,
@@ -22,9 +23,6 @@ export const styles = theme => ({
   },
   button: {
     minWidth: 100,
-  },
-  formControl: {
-    width: '100%',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
