@@ -8,8 +8,8 @@ import Login from './components/Login/Login';
 import theme from './components/theme';
 
 const client = new ApolloClient({
-  //uri: 'http://gavrilov.site/graphql',
-    uri: 'http://localhost:9000/graphql',
+  uri: 'http://gavrilov.site/graphql'
+    //uri: 'http://localhost:9000/graphql'
 });
 
 class App extends Component {
